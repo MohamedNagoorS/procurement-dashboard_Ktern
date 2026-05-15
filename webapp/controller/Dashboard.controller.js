@@ -348,7 +348,7 @@ sap.ui.define([
 		onSelectionChange: function (oEvent) {
 			var oItem = oEvent.getParameter("listItem");
 			if (oItem) {
-				var oContext = oItem.getBindingContext();
+				var oContext = oItem.getBindingContext("view");
 				var sPONumber = oContext.getProperty("PONumber");
 				this._oRouter.navTo("RouteDetail", {
 					poNumber: sPONumber
@@ -362,7 +362,7 @@ sap.ui.define([
 		 */
 		onItemPress: function (oEvent) {
 			var oItem = oEvent.getSource();
-			var oContext = oItem.getBindingContext();
+			var oContext = oItem.getBindingContext("view");
 			var sPONumber = oContext.getProperty("PONumber");
 			
 			this._oRouter.navTo("RouteDetail", {

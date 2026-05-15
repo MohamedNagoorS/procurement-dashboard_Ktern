@@ -147,7 +147,7 @@
 				<!-- Analytics Section (Simplified without viz charts) -->
 				<layout:Grid
 					id="chartsGrid"
-					defaultSpan="XL6 L6 M6 S12">
+					defaultSpan="XL3 L3 M6 S12">
 					
 					<!-- PO Status Distribution -->
 					<f:Card class="chartCard fadeIn">
@@ -305,32 +305,32 @@
 										type="Navigation"
 										press="onItemPress"
 										highlight="{
-											path: 'DeliveryDate',
+											path: 'view>DeliveryDate',
 											formatter: '.formatter.formatOverdueHighlight'
 										}">
 										<cells>
 											<ObjectIdentifier
-												title="{PONumber}"
-												text="{CreatedBy}"/>
-											<Text text="{VendorName}"/>
-											<Text text="{CompanyCode}"/>
+												title="{view>PONumber}"
+												text="{view>CreatedBy}"/>
+											<Text text="{view>VendorName}"/>
+											<Text text="{view>CompanyCode}"/>
 											<ObjectNumber
 												number="{
-													parts: ['NetAmount', 'Currency'],
+													parts: ['view>NetAmount', 'view>Currency'],
 													formatter: '.formatter.formatCurrency'
 												}"/>
-											<Text text="{Currency}"/>
+											<Text text="{view>Currency}"/>
 											<Text text="{
-												path: 'DeliveryDate',
+												path: 'view>DeliveryDate',
 												formatter: '.formatter.formatDeliveryDate'
 											}"/>
 											<ObjectStatus
 												text="{
-													path: 'Status',
+													path: 'view>Status',
 													formatter: '.formatter.formatStatus'
 												}"
 												state="{
-													path: 'Status',
+													path: 'view>Status',
 													formatter: '.formatter.formatStatusState'
 												}"/>
 										</cells>
