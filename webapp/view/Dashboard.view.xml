@@ -27,7 +27,8 @@
 				<layout:Grid
 					id="kpiGrid"
 					class="kpiCardsContainer"
-					defaultSpan="XL2 L2 M4 S12">
+					defaultSpan="XL2 L3 M6 S12"
+					containerQuery="true">
 					
 					<!-- Total POs Card -->
 					<f:Card class="kpiCard fadeIn">
