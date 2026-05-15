@@ -11,7 +11,7 @@
     "description": "{{appDescription}}",
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/sap/ZSRV_PO_KTERN_O2/",
+        "uri": "/sap/opu/odata/sap/ZSRV_PO_KTERN_O2/?sap-client=100",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
@@ -78,7 +78,8 @@
             "Authorization": "Basic SzkwMTgyOTpUaGFyaXExMjNA"
           },
           "metadataUrlParams": {
-            "sap-value-list": "none"
+            "sap-value-list": "none",
+            "sap-language": "EN"
           }
         }
       }
