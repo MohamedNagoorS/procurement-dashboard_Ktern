@@ -1,0 +1,327 @@
+<mvc:View
+	controllerName="procurement.dashboard.controller.Dashboard"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+	xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	displayBlock="true">
+	
+	<Page
+		id="dashboardPage"
+		title="{i18n>dashboardTitle}"
+		showNavButton="false"
+		class="sapUiResponsiveContentPadding">
+		
+		<content>
+			<VBox class="dashboardContainer">
+				
+				<!-- Page Header -->
+				<layout:VerticalLayout class="sapUiSmallMarginBottom">
+					<Title text="{i18n>dashboardTitle}" level="H1"/>
+					<Text text="{i18n>dashboardSubtitle}" class="sapUiTinyMarginTop"/>
+				</layout:VerticalLayout>
+				
+				<!-- KPI Cards Section -->
+				<layout:Grid
+					id="kpiGrid"
+					class="kpiCardsContainer"
+					defaultSpan="XL2 L2 M4 S12">
+					
+					<!-- Total POs Card -->
+					<f:Card class="kpiCard fadeIn" press="onKPICardPress('All')">
+						<f:header>
+							<card:Header
+								title="{i18n>kpiTotalPOs}"
+								iconSrc="sap-icon://document"/>
+						</f:header>
+						<f:content>
+							<VBox class="kpiCardContent" alignItems="Center">
+								<Text text="{view>/kpiData/totalPOs}" class="kpiValue"/>
+								<HBox class="kpiTrend" alignItems="Center">
+									<core:Icon src="sap-icon://trend-up" size="1rem" color="#107e3e"/>
+									<Text text="+5.2%" class="sapUiTinyMarginBegin kpiTrendUp"/>
+								</HBox>
+							</VBox>
+						</f:content>
+					</f:Card>
+					
+					<!-- Open POs Card -->
+					<f:Card class="kpiCard fadeIn" press="onKPICardPress('Open')">
+						<f:header>
+							<card:Header
+								title="{i18n>kpiOpenPOs}"
+								iconSrc="sap-icon://open-command-field"/>
+						</f:header>
+						<f:content>
+							<VBox class="kpiCardContent" alignItems="Center">
+								<Text text="{view>/kpiData/openPOs}" class="kpiValue"/>
+								<HBox class="kpiTrend" alignItems="Center">
+									<core:Icon src="sap-icon://trend-up" size="1rem" color="#107e3e"/>
+									<Text text="+2.1%" class="sapUiTinyMarginBegin kpiTrendUp"/>
+								</HBox>
+							</VBox>
+						</f:content>
+					</f:Card>
+					
+					<!-- Released POs Card -->
+					<f:Card class="kpiCard fadeIn" press="onKPICardPress('Released')">
+						<f:header>
+							<card:Header
+								title="{i18n>kpiReleasedPOs}"
+								iconSrc="sap-icon://accept"/>
+						</f:header>
+						<f:content>
+							<VBox class="kpiCardContent" alignItems="Center">
+								<Text text="{view>/kpiData/releasedPOs}" class="kpiValue"/>
+								<HBox class="kpiTrend" alignItems="Center">
+									<core:Icon src="sap-icon://trend-up" size="1rem" color="#107e3e"/>
+									<Text text="+8.5%" class="sapUiTinyMarginBegin kpiTrendUp"/>
+								</HBox>
+							</VBox>
+						</f:content>
+					</f:Card>
+					
+					<!-- Delayed Deliveries Card -->
+					<f:Card class="kpiCard fadeIn" press="onKPICardPress('Overdue')">
+						<f:header>
+							<card:Header
+								title="{i18n>kpiDelayedDeliveries}"
+								iconSrc="sap-icon://alert"/>
+						</f:header>
+						<f:content>
+							<VBox class="kpiCardContent" alignItems="Center">
+								<Text text="{view>/kpiData/delayedDeliveries}" class="kpiValue"/>
+								<HBox class="kpiTrend" alignItems="Center">
+									<core:Icon src="sap-icon://trend-down" size="1rem" color="#bb0000"/>
+									<Text text="-3.2%" class="sapUiTinyMarginBegin kpiTrendDown"/>
+								</HBox>
+							</VBox>
+						</f:content>
+					</f:Card>
+					
+					<!-- Total Amount Card -->
+					<f:Card class="kpiCard fadeIn">
+						<f:header>
+							<card:Header
+								title="{i18n>kpiTotalAmount}"
+								iconSrc="sap-icon://money-bills"/>
+						</f:header>
+						<f:content>
+							<VBox class="kpiCardContent" alignItems="Center">
+								<Text text="{
+									parts: ['view>/kpiData/totalAmount', 'view>/kpiData/currency'],
+									formatter: '.formatter.formatCurrency'
+								}" class="kpiValue"/>
+								<HBox class="kpiTrend" alignItems="Center">
+									<core:Icon src="sap-icon://trend-up" size="1rem" color="#107e3e"/>
+									<Text text="+12.3%" class="sapUiTinyMarginBegin kpiTrendUp"/>
+								</HBox>
+							</VBox>
+						</f:content>
+					</f:Card>
+					
+				</layout:Grid>
+				
+				<!-- Analytics Section (Simplified without viz charts) -->
+				<layout:Grid
+					id="chartsGrid"
+					defaultSpan="XL6 L6 M6 S12">
+					
+					<!-- PO Status Distribution -->
+					<f:Card class="chartCard fadeIn">
+						<f:header>
+							<card:Header
+								title="{i18n>chartStatusDistribution}"
+								iconSrc="sap-icon://donut-chart"/>
+						</f:header>
+						<f:content>
+							<List items="{view>/chartData/statusDistribution}">
+								<CustomListItem>
+									<HBox justifyContent="SpaceBetween" width="100%">
+										<Text text="{view>status}"/>
+										<ObjectNumber number="{view>count}" emphasized="true"/>
+									</HBox>
+								</CustomListItem>
+							</List>
+						</f:content>
+					</f:Card>
+					
+					<!-- Monthly Procurement -->
+					<f:Card class="chartCard fadeIn">
+						<f:header>
+							<card:Header
+								title="{i18n>chartMonthlyProcurement}"
+								iconSrc="sap-icon://bar-chart"/>
+						</f:header>
+						<f:content>
+							<List items="{view>/chartData/monthlyProcurement}">
+								<CustomListItem>
+									<HBox justifyContent="SpaceBetween" width="100%">
+										<Text text="{view>month}"/>
+										<ObjectNumber number="{view>amount}" unit="USD" emphasized="true"/>
+									</HBox>
+								</CustomListItem>
+							</List>
+						</f:content>
+					</f:Card>
+					
+					<!-- Vendor Analysis -->
+					<f:Card class="chartCard fadeIn">
+						<f:header>
+							<card:Header
+								title="{i18n>chartVendorAnalysis}"
+								iconSrc="sap-icon://supplier"/>
+						</f:header>
+						<f:content>
+							<List items="{view>/chartData/vendorAnalysis}">
+								<CustomListItem>
+									<HBox justifyContent="SpaceBetween" width="100%">
+										<Text text="{view>vendor}"/>
+										<ObjectNumber number="{view>count}" emphasized="true"/>
+									</HBox>
+								</CustomListItem>
+							</List>
+						</f:content>
+					</f:Card>
+					
+					<!-- Company Code Distribution -->
+					<f:Card class="chartCard fadeIn">
+						<f:header>
+							<card:Header
+								title="{i18n>chartCompanyCode}"
+								iconSrc="sap-icon://building"/>
+						</f:header>
+						<f:content>
+							<List items="{view>/chartData/companyCodeDistribution}">
+								<CustomListItem>
+									<HBox justifyContent="SpaceBetween" width="100%">
+										<Text text="{view>companyCode}"/>
+										<ObjectNumber number="{view>count}" emphasized="true"/>
+									</HBox>
+								</CustomListItem>
+							</List>
+						</f:content>
+					</f:Card>
+					
+				</layout:Grid>
+				
+				<!-- Purchase Orders Table -->
+				<f:Card class="tableCard fadeIn">
+					<f:header>
+						<card:Header
+							title="{i18n>tableTitle}"
+							iconSrc="sap-icon://table-view"/>
+					</f:header>
+					<f:content>
+						<VBox>
+							<!-- Toolbar -->
+							<OverflowToolbar class="tableToolbar">
+								<SearchField
+									id="searchField"
+									width="400px"
+									placeholder="{i18n>searchPlaceholder}"
+									search="onSearch"/>
+								<ToolbarSpacer/>
+								<Button
+									icon="sap-icon://filter"
+									text="{i18n>filterButton}"
+									press="onOpenFilterDialog"/>
+								<Button
+									icon="sap-icon://sort"
+									text="{i18n>sortButton}"
+									press="onOpenSortDialog"/>
+								<Button
+									icon="sap-icon://excel-attachment"
+									text="{i18n>exportButton}"
+									press="onExport"/>
+								<Button
+									icon="sap-icon://refresh"
+									text="{i18n>refreshButton}"
+									press="onRefresh"/>
+							</OverflowToolbar>
+							
+							<!-- Table -->
+							<Table
+								id="poTable"
+								items="{
+									path: '/PurchaseOrders',
+									sorter: {
+										path: 'PONumber',
+										descending: false
+									}
+								}"
+								growing="true"
+								growingThreshold="20"
+								growingScrollToLoad="true"
+								mode="SingleSelectMaster"
+								selectionChange="onSelectionChange">
+								<columns>
+									<Column width="10rem">
+										<Text text="{i18n>tablePONumber}"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="{i18n>tableVendorName}"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+										<Text text="{i18n>tableCompanyCode}"/>
+									</Column>
+									<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+										<Text text="{i18n>tableNetAmount}"/>
+									</Column>
+									<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+										<Text text="{i18n>tableCurrency}"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="{i18n>tableDeliveryDate}"/>
+									</Column>
+									<Column hAlign="Center">
+										<Text text="{i18n>tableStatus}"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem
+										type="Navigation"
+										press="onItemPress"
+										highlight="{
+											path: 'DeliveryDate',
+											formatter: '.formatter.formatOverdueHighlight'
+										}">
+										<cells>
+											<ObjectIdentifier
+												title="{PONumber}"
+												text="{CreatedBy}"/>
+											<Text text="{VendorName}"/>
+											<Text text="{CompanyCode}"/>
+											<ObjectNumber
+												number="{
+													parts: ['NetAmount', 'Currency'],
+													formatter: '.formatter.formatCurrency'
+												}"/>
+											<Text text="{Currency}"/>
+											<Text text="{
+												path: 'DeliveryDate',
+												formatter: '.formatter.formatDeliveryDate'
+											}"/>
+											<ObjectStatus
+												text="{
+													path: 'Status',
+													formatter: '.formatter.formatStatus'
+												}"
+												state="{
+													path: 'Status',
+													formatter: '.formatter.formatStatusState'
+												}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</VBox>
+					</f:content>
+				</f:Card>
+				
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

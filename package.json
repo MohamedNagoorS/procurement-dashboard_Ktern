@@ -1,0 +1,24 @@
+{
+  "name": "procurement-dashboard",
+  "version": "1.0.0",
+  "description": "SAP Fiori Procurement Dashboard Application",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve --port 8081 --open index.html",
+    "start:8080": "ui5 serve --port 8080 --open index.html",
+    "start:3000": "ui5 serve --port 3000 --open index.html",
+    "build": "ui5 build --clean-dest --dest dist",
+    "lint": "eslint webapp"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^3.9.0",
+    "@sap/ux-ui5-tooling": "^1.14.0",
+    "ui5-middleware-simpleproxy": "^3.2.0"
+  },
+  "ui5": {
+    "dependencies": [
+      "@sap/ux-ui5-tooling",
+      "ui5-middleware-simpleproxy"
+    ]
+  }
+}

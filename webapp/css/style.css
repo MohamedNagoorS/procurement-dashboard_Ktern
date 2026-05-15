@@ -1,0 +1,289 @@
+/* Global Styles */
+.sapUiSizeCompact .sapMPage {
+    background-color: #f5f6f7;
+}
+
+/* Dashboard Container */
+.dashboardContainer {
+    padding: 1rem;
+}
+
+/* KPI Cards Section */
+.kpiCardsContainer {
+    margin-bottom: 2rem;
+}
+
+.kpiCard {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.kpiCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.kpiCard .sapFCardHeader {
+    border-bottom: 3px solid #0854a0;
+}
+
+.kpiCardContent {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.kpiValue {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0854a0;
+    margin: 0.5rem 0;
+}
+
+.kpiLabel {
+    font-size: 0.875rem;
+    color: #6a6d70;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kpiTrend {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.kpiTrendUp {
+    color: #107e3e;
+}
+
+.kpiTrendDown {
+    color: #bb0000;
+}
+
+/* Chart Cards */
+.chartCard {
+    margin-bottom: 1rem;
+    height: 400px;
+}
+
+.chartCard .sapFCardContent {
+    padding: 1rem;
+    height: 350px;
+}
+
+.chartContainer {
+    width: 100%;
+    height: 100%;
+}
+
+/* Table Styles */
+.tableCard {
+    margin-top: 2rem;
+}
+
+.tableToolbar {
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.sapMTable .sapMLIBHighlight {
+    border-left-width: 4px;
+}
+
+.sapMTable .sapMLIBHighlightError {
+    border-left-color: #bb0000;
+}
+
+/* Status Indicators */
+.statusOpen {
+    color: #0854a0;
+    font-weight: 600;
+}
+
+.statusReleased {
+    color: #107e3e;
+    font-weight: 600;
+}
+
+.statusClosed {
+    color: #6a6d70;
+    font-weight: 600;
+}
+
+.statusOverdue {
+    color: #bb0000;
+    font-weight: 700;
+}
+
+/* Responsive Grid */
+.sapUiRespGrid {
+    margin: 0 -0.5rem;
+}
+
+.sapUiRespGridMedia-Std-Desktop .sapUiRespGridSpanL4,
+.sapUiRespGridMedia-Std-Desktop .sapUiRespGridSpanL6 {
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Loading Indicator */
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+/* Empty State */
+.emptyStateContainer {
+    text-align: center;
+    padding: 3rem;
+}
+
+.emptyStateIcon {
+    font-size: 4rem;
+    color: #d9d9d9;
+    margin-bottom: 1rem;
+}
+
+.emptyStateText {
+    font-size: 1.125rem;
+    color: #6a6d70;
+}
+
+/* Detail Page */
+.detailPage {
+    background-color: #fff;
+}
+
+.detailHeader {
+    background: linear-gradient(135deg, #0854a0 0%, #1873cc 100%);
+    color: #fff;
+    padding: 2rem;
+}
+
+.detailHeaderTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.detailHeaderSubtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.detailSection {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.detailSectionTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0854a0;
+    margin-bottom: 1rem;
+}
+
+/* Filter Dialog */
+.filterDialog .sapMDialog {
+    min-width: 400px;
+}
+
+/* Compact Mode Adjustments */
+.sapUiSizeCompact .kpiValue {
+    font-size: 2rem;
+}
+
+.sapUiSizeCompact .kpiCard {
+    min-height: 120px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .kpiValue {
+        font-size: 1.75rem;
+    }
+    
+    .chartCard {
+        height: 300px;
+    }
+    
+    .chartCard .sapFCardContent {
+        height: 250px;
+    }
+    
+    .dashboardContainer {
+        padding: 0.5rem;
+    }
+}
+
+/* Tablet Responsive */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .kpiValue {
+        font-size: 2rem;
+    }
+    
+    .chartCard {
+        height: 350px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Card Hover Effects */
+.sapFCard:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Row Hover */
+.sapMListTblRow:hover {
+    background-color: #f5f6f7;
+}
+
+/* Button Styles */
+.sapMBtn.sapMBtnEmphasized {
+    background-color: #0854a0;
+    border-color: #0854a0;
+}
+
+.sapMBtn.sapMBtnEmphasized:hover {
+    background-color: #053b7a;
+    border-color: #053b7a;
+}
+
+/* Search Field */
+.sapMSF {
+    max-width: 400px;
+}
+
+/* Toolbar Spacing */
+.sapMTB-Transparent-CTX .sapMTBSpacer {
+    width: 1rem;
+}
+
+/* VizFrame Customization */
+.sapVizFrame {
+    width: 100%;
+    height: 100%;
+}
+
+/* Microchart Styles */
+.sapSuiteUiMicroChartLibrary {
+    width: 100%;
+}
