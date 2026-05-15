@@ -30,11 +30,16 @@
 					defaultSpan="XL2 L2 M4 S12">
 					
 					<!-- Total POs Card -->
-					<f:Card class="kpiCard fadeIn" press="onKPICardPress('All')">
+					<f:Card class="kpiCard fadeIn">
 						<f:header>
 							<card:Header
 								title="{i18n>kpiTotalPOs}"
-								iconSrc="sap-icon://document"/>
+								iconSrc="sap-icon://document"
+								press=".onKPICardPress">
+								<card:customData>
+									<core:CustomData key="filter" value="All"/>
+								</card:customData>
+							</card:Header>
 						</f:header>
 						<f:content>
 							<VBox class="kpiCardContent" alignItems="Center">
@@ -48,11 +53,16 @@
 					</f:Card>
 					
 					<!-- Open POs Card -->
-					<f:Card class="kpiCard fadeIn" press="onKPICardPress('Open')">
+					<f:Card class="kpiCard fadeIn">
 						<f:header>
 							<card:Header
 								title="{i18n>kpiOpenPOs}"
-								iconSrc="sap-icon://open-command-field"/>
+								iconSrc="sap-icon://open-command-field"
+								press=".onKPICardPress">
+								<card:customData>
+									<core:CustomData key="filter" value="Open"/>
+								</card:customData>
+							</card:Header>
 						</f:header>
 						<f:content>
 							<VBox class="kpiCardContent" alignItems="Center">
@@ -66,11 +76,16 @@
 					</f:Card>
 					
 					<!-- Released POs Card -->
-					<f:Card class="kpiCard fadeIn" press="onKPICardPress('Released')">
+					<f:Card class="kpiCard fadeIn">
 						<f:header>
 							<card:Header
 								title="{i18n>kpiReleasedPOs}"
-								iconSrc="sap-icon://accept"/>
+								iconSrc="sap-icon://accept"
+								press=".onKPICardPress">
+								<card:customData>
+									<core:CustomData key="filter" value="Released"/>
+								</card:customData>
+							</card:Header>
 						</f:header>
 						<f:content>
 							<VBox class="kpiCardContent" alignItems="Center">
@@ -84,11 +99,16 @@
 					</f:Card>
 					
 					<!-- Delayed Deliveries Card -->
-					<f:Card class="kpiCard fadeIn" press="onKPICardPress('Overdue')">
+					<f:Card class="kpiCard fadeIn">
 						<f:header>
 							<card:Header
 								title="{i18n>kpiDelayedDeliveries}"
-								iconSrc="sap-icon://alert"/>
+								iconSrc="sap-icon://alert"
+								press=".onKPICardPress">
+								<card:customData>
+									<core:CustomData key="filter" value="Overdue"/>
+								</card:customData>
+							</card:Header>
 						</f:header>
 						<f:content>
 							<VBox class="kpiCardContent" alignItems="Center">

@@ -58,12 +58,15 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "procurement.dashboard.i18n.i18n"
+          "bundleName": "procurement.dashboard.i18n.i18n",
+          "supportedLocales": ["en", ""],
+          "fallbackLocale": ""
         }
       },
       "": {
         "dataSource": "mainService",
         "preload": true,
+        "type": "sap.ui.model.odata.v2.ODataModel",
         "settings": {
           "defaultBindingMode": "TwoWay",
           "defaultCountMode": "Inline",

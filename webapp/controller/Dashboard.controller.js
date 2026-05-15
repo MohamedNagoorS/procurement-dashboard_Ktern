@@ -182,9 +182,16 @@ sap.ui.define([
 
 		/**
 		 * Handle KPI card press to filter table
-		 * @param {string} sFilter - Filter type
+		 * @param {sap.ui.base.Event} oEvent - Press event
 		 */
-		onKPICardPress: function (sFilter) {
+		onKPICardPress: function (oEvent) {
+			var sFilter = "All";
+			if (oEvent && oEvent.getSource()) {
+				var oCustomData = oEvent.getSource().data("filter");
+				if (oCustomData) {
+					sFilter = oCustomData;
+				}
+			}
 			var oTable = this.byId("poTable");
 			var oBinding = oTable.getBinding("items");
 			var aFilters = [];
