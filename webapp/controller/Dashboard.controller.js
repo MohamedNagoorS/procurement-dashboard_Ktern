@@ -346,28 +346,20 @@ sap.ui.define([
 		 * @param {sap.ui.base.Event} oEvent - Selection change event
 		 */
 		onSelectionChange: function (oEvent) {
-			var oItem = oEvent.getParameter("listItem");
-			if (oItem) {
-				var oContext = oItem.getBindingContext("view");
+			var oContext = oEvent.getParameter("rowContext");
+			if (!oContext) {
+				var iRowIndex = oEvent.getParameter("rowIndex");
+				if (iRowIndex !== undefined && iRowIndex > -1) {
+					var oTable = oEvent.getSource();
+					oContext = oTable.getContextByIndex(iRowIndex);
+				}
+			}
+			if (oContext) {
 				var sPONumber = oContext.getProperty("PONumber");
 				this._oRouter.navTo("RouteDetail", {
 					poNumber: sPONumber
 				});
 			}
-		},
-
-		/**
-		 * Handle table item press
-		 * @param {sap.ui.base.Event} oEvent - Press event
-		 */
-		onItemPress: function (oEvent) {
-			var oItem = oEvent.getSource();
-			var oContext = oItem.getBindingContext("view");
-			var sPONumber = oContext.getProperty("PONumber");
-			
-			this._oRouter.navTo("RouteDetail", {
-				poNumber: sPONumber
-			});
 		}
 	});
 });

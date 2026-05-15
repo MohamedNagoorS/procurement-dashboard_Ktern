@@ -263,67 +263,70 @@
 							</OverflowToolbar>
 							
 							<!-- Table -->
-							<Table
+							<table:Table
+								xmlns:table="sap.ui.table"
 								id="poTable"
-								items="{
+								rows="{
 									path: 'view>/purchaseOrders',
 									sorter: {
 										path: 'PONumber',
 										descending: false
 									}
 								}"
-								growing="true"
-								growingThreshold="20"
-								growingScrollToLoad="true"
-								mode="SingleSelectMaster"
-								selectionChange="onSelectionChange">
-								<columns>
-									<Column width="10rem">
-										<Text text="{i18n>tablePONumber}"/>
-									</Column>
-									<Column minScreenWidth="Tablet" demandPopin="true">
-										<Text text="{i18n>tableVendorName}"/>
-									</Column>
-									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-										<Text text="{i18n>tableCompanyCode}"/>
-									</Column>
-									<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-										<Text text="{i18n>tableNetAmount}"/>
-									</Column>
-									<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
-										<Text text="{i18n>tableCurrency}"/>
-									</Column>
-									<Column minScreenWidth="Tablet" demandPopin="true">
-										<Text text="{i18n>tableDeliveryDate}"/>
-									</Column>
-									<Column hAlign="Center">
-										<Text text="{i18n>tableStatus}"/>
-									</Column>
-								</columns>
-								<items>
-									<ColumnListItem
-										type="Navigation"
-										press="onItemPress"
-										highlight="{
-											path: 'view>DeliveryDate',
-											formatter: '.formatter.formatOverdueHighlight'
-										}">
-										<cells>
+								selectionMode="Single"
+								selectionBehavior="RowOnly"
+								visibleRowCount="10"
+								rowSelectionChange="onSelectionChange"
+								ariaLabelledBy="title">
+								<table:columns>
+									<table:Column width="10rem">
+										<Label text="{i18n>tablePONumber}"/>
+										<table:template>
 											<ObjectIdentifier
 												title="{view>PONumber}"
 												text="{view>CreatedBy}"/>
+										</table:template>
+									</table:Column>
+									<table:Column>
+										<Label text="{i18n>tableVendorName}"/>
+										<table:template>
 											<Text text="{view>VendorName}"/>
+										</table:template>
+									</table:Column>
+									<table:Column hAlign="Center">
+										<Label text="{i18n>tableCompanyCode}"/>
+										<table:template>
 											<Text text="{view>CompanyCode}"/>
+										</table:template>
+									</table:Column>
+									<table:Column hAlign="End">
+										<Label text="{i18n>tableNetAmount}"/>
+										<table:template>
 											<ObjectNumber
 												number="{
 													parts: ['view>NetAmount', 'view>Currency'],
 													formatter: '.formatter.formatCurrency'
 												}"/>
+										</table:template>
+									</table:Column>
+									<table:Column hAlign="Center">
+										<Label text="{i18n>tableCurrency}"/>
+										<table:template>
 											<Text text="{view>Currency}"/>
+										</table:template>
+									</table:Column>
+									<table:Column>
+										<Label text="{i18n>tableDeliveryDate}"/>
+										<table:template>
 											<Text text="{
 												path: 'view>DeliveryDate',
 												formatter: '.formatter.formatDeliveryDate'
 											}"/>
+										</table:template>
+									</table:Column>
+									<table:Column hAlign="Center">
+										<Label text="{i18n>tableStatus}"/>
+										<table:template>
 											<ObjectStatus
 												text="{
 													path: 'view>Status',
@@ -333,10 +336,10 @@
 													path: 'view>Status',
 													formatter: '.formatter.formatStatusState'
 												}"/>
-										</cells>
-									</ColumnListItem>
-								</items>
-							</Table>
+										</table:template>
+									</table:Column>
+								</table:columns>
+							</table:Table>
 						</VBox>
 					</f:content>
 				</f:Card>
