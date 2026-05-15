@@ -27,7 +27,7 @@ sap.ui.define([
 			this.getView().bindElement({
 				path: "/PurchaseOrders('" + sPONumber + "')",
 				parameters: {
-					expand: "_Items"
+					expand: "to_Items"
 				},
 				events: {
 					dataRequested: function () {

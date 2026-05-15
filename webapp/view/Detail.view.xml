@@ -90,7 +90,7 @@
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection title="Items">
 						<uxap:blocks>
-							<Table id="lineItemsTable" items="{_Items}">
+							<Table id="lineItemsTable" items="{to_Items}">
 								<columns>
 									<Column><Text text="Item Number"/></Column>
 									<Column><Text text="Material"/></Column>
