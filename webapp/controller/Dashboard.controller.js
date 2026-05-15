@@ -34,8 +34,14 @@ sap.ui.define([
 			var oViewModel = this.getView().getModel("view");
 			oViewModel.setProperty("/busy", true);
 
-			var oModel = this.getView().getModel();
+			var oModel = this.getOwnerComponent().getModel();
 			
+			if (!oModel) {
+				oViewModel.setProperty("/busy", false);
+				MessageBox.error("Unable to load data. The OData service might be unreachable or require authentication.");
+				return;
+			}
+
 			// Read purchase orders
 			oModel.read("/PurchaseOrders", {
 				success: function (oData) {
