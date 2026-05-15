@@ -26,7 +26,9 @@ sap.ui.define([
 			// Bind the view to the purchase order
 			this.getView().bindElement({
 				path: "/PurchaseOrders('" + sPONumber + "')",
-				model: undefined,
+				parameters: {
+					expand: "_Items"
+				},
 				events: {
 					dataRequested: function () {
 						this.getView().setBusy(true);
