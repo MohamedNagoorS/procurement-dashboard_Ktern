@@ -266,7 +266,7 @@
 							<Table
 								id="poTable"
 								items="{
-									path: '/PurchaseOrders',
+									path: 'view>/purchaseOrders',
 									sorter: {
 										path: 'PONumber',
 										descending: false

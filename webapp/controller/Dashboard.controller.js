@@ -47,6 +47,7 @@ sap.ui.define([
 				success: function (oData) {
 					this._calculateKPIs(oData.results);
 					this._prepareChartData(oData.results);
+					oViewModel.setProperty("/purchaseOrders", oData.results);
 					oViewModel.setProperty("/busy", false);
 				}.bind(this),
 				error: function (oError) {
