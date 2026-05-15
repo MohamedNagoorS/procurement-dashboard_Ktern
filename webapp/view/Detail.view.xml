@@ -103,9 +103,9 @@
 										<cells>
 											<Text text="{ItemNumber}"/>
 											<Text text="{MaterialDescription}"/>
-											<Text text="{Quantity} {Unit}"/>
-											<Text text="{UnitPrice} {Currency}"/>
-											<ObjectNumber number="{parts: ['TotalPrice', 'Currency'], formatter: '.formatter.formatCurrency'}"/>
+											<Text text="{Quantity} {PurchaseOrderQuantityUnit}"/>
+											<Text text="{UnitPrice} {DocumentCurrency}"/>
+											<ObjectNumber number="{parts: ['TotalPrice', 'DocumentCurrency'], formatter: '.formatter.formatCurrency'}"/>
 										</cells>
 									</ColumnListItem>
 								</items>
