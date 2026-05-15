@@ -47,7 +47,9 @@
         "sap.f": {},
         "sap.suite.ui.microchart": {},
         "sap.ui.table": {},
-        "sap.ui.export": {}
+        "sap.ui.export": {},
+        "sap.viz": {},
+        "sap.uxap": {}
       }
     },
     "contentDensities": {

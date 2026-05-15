@@ -6,6 +6,9 @@
 	xmlns:card="sap.f.cards"
 	xmlns:layout="sap.ui.layout"
 	xmlns:core="sap.ui.core"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data"
 	displayBlock="true">
 	
 	<Page
@@ -157,14 +160,22 @@
 								iconSrc="sap-icon://donut-chart"/>
 						</f:header>
 						<f:content>
-							<List items="{view>/chartData/statusDistribution}">
-								<CustomListItem>
-									<HBox justifyContent="SpaceBetween" width="100%">
-										<Text text="{view>status}"/>
-										<ObjectNumber number="{view>count}" emphasized="true"/>
-									</HBox>
-								</CustomListItem>
-							</List>
+							<viz:VizFrame id="statusChart" uiConfig="{applicationSet:'fiori'}" vizType="donut" height="300px" width="100%">
+								<viz:dataset>
+									<viz.data:FlattenedDataset data="{view>/chartData/statusDistribution}">
+										<viz.data:dimensions>
+											<viz.data:DimensionDefinition name="Status" value="{view>status}"/>
+										</viz.data:dimensions>
+										<viz.data:measures>
+											<viz.data:MeasureDefinition name="Count" value="{view>count}"/>
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<viz.feeds:FeedItem uid="size" type="Measure" values="Count"/>
+									<viz.feeds:FeedItem uid="color" type="Dimension" values="Status"/>
+								</viz:feeds>
+							</viz:VizFrame>
 						</f:content>
 					</f:Card>
 					
@@ -176,14 +187,22 @@
 								iconSrc="sap-icon://bar-chart"/>
 						</f:header>
 						<f:content>
-							<List items="{view>/chartData/monthlyProcurement}">
-								<CustomListItem>
-									<HBox justifyContent="SpaceBetween" width="100%">
-										<Text text="{view>month}"/>
-										<ObjectNumber number="{view>amount}" unit="USD" emphasized="true"/>
-									</HBox>
-								</CustomListItem>
-							</List>
+							<viz:VizFrame id="monthlyChart" uiConfig="{applicationSet:'fiori'}" vizType="column" height="300px" width="100%">
+								<viz:dataset>
+									<viz.data:FlattenedDataset data="{view>/chartData/monthlyProcurement}">
+										<viz.data:dimensions>
+											<viz.data:DimensionDefinition name="Month" value="{view>month}"/>
+										</viz.data:dimensions>
+										<viz.data:measures>
+											<viz.data:MeasureDefinition name="Amount" value="{view>amount}"/>
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Amount"/>
+									<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Month"/>
+								</viz:feeds>
+							</viz:VizFrame>
 						</f:content>
 					</f:Card>
 					
@@ -195,14 +214,22 @@
 								iconSrc="sap-icon://supplier"/>
 						</f:header>
 						<f:content>
-							<List items="{view>/chartData/vendorAnalysis}">
-								<CustomListItem>
-									<HBox justifyContent="SpaceBetween" width="100%">
-										<Text text="{view>vendor}"/>
-										<ObjectNumber number="{view>count}" emphasized="true"/>
-									</HBox>
-								</CustomListItem>
-							</List>
+							<viz:VizFrame id="vendorChart" uiConfig="{applicationSet:'fiori'}" vizType="bar" height="300px" width="100%">
+								<viz:dataset>
+									<viz.data:FlattenedDataset data="{view>/chartData/vendorAnalysis}">
+										<viz.data:dimensions>
+											<viz.data:DimensionDefinition name="Vendor" value="{view>vendor}"/>
+										</viz.data:dimensions>
+										<viz.data:measures>
+											<viz.data:MeasureDefinition name="Count" value="{view>count}"/>
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Count"/>
+									<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Vendor"/>
+								</viz:feeds>
+							</viz:VizFrame>
 						</f:content>
 					</f:Card>
 					
@@ -214,14 +241,22 @@
 								iconSrc="sap-icon://building"/>
 						</f:header>
 						<f:content>
-							<List items="{view>/chartData/companyCodeDistribution}">
-								<CustomListItem>
-									<HBox justifyContent="SpaceBetween" width="100%">
-										<Text text="{view>companyCode}"/>
-										<ObjectNumber number="{view>count}" emphasized="true"/>
-									</HBox>
-								</CustomListItem>
-							</List>
+							<viz:VizFrame id="companyCodeChart" uiConfig="{applicationSet:'fiori'}" vizType="bar" height="300px" width="100%">
+								<viz:dataset>
+									<viz.data:FlattenedDataset data="{view>/chartData/companyCodeDistribution}">
+										<viz.data:dimensions>
+											<viz.data:DimensionDefinition name="Company Code" value="{view>companyCode}"/>
+										</viz.data:dimensions>
+										<viz.data:measures>
+											<viz.data:MeasureDefinition name="Count" value="{view>count}"/>
+										</viz.data:measures>
+									</viz.data:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Count"/>
+									<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Company Code"/>
+								</viz:feeds>
+							</viz:VizFrame>
 						</f:content>
 					</f:Card>
 					

@@ -5,129 +5,116 @@
 	xmlns:f="sap.f"
 	xmlns:layout="sap.ui.layout"
 	xmlns:form="sap.ui.layout.form"
+	xmlns:uxap="sap.uxap"
 	displayBlock="true">
 	
-	<Page
-		id="detailPage"
-		title="{i18n>detailTitle}"
-		showNavButton="true"
-		navButtonPress="onNavBack"
-		class="detailPage">
+	<uxap:ObjectPageLayout id="ObjectPageLayout"
+		enableLazyLoading="true"
+		useIconTabBar="true"
+		showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false">
 		
-		<content>
-			<VBox>
-				<!-- Header Section -->
-				<VBox class="detailHeader">
-					<Title text="{PONumber}" level="H2" class="detailHeaderTitle"/>
-					<Text text="{i18n>detailHeaderInfo}" class="detailHeaderSubtitle"/>
-				</VBox>
-				
-				<!-- Header Information -->
-				<VBox class="detailSection">
-					<Title text="{i18n>detailHeaderInfo}" level="H3" class="detailSectionTitle"/>
-					<form:SimpleForm
-						editable="false"
-						layout="ResponsiveGridLayout"
-						labelSpanXL="4"
-						labelSpanL="4"
-						labelSpanM="4"
-						labelSpanS="12"
-						emptySpanXL="0"
-						emptySpanL="0"
-						emptySpanM="0"
-						emptySpanS="0"
-						columnsXL="2"
-						columnsL="2"
-						columnsM="1">
-						<form:content>
-							<Label text="{i18n>tablePONumber}"/>
-							<Text text="{PONumber}"/>
-							
-							<Label text="{i18n>tableStatus}"/>
-							<ObjectStatus
-								text="{
-									path: 'Status',
-									formatter: '.formatter.formatStatus'
-								}"
-								state="{
-									path: 'Status',
-									formatter: '.formatter.formatStatusState'
-								}"/>
-							
-							<Label text="{i18n>tableCompanyCode}"/>
-							<Text text="{CompanyCode}"/>
-							
-							<Label text="{i18n>tableNetAmount}"/>
-							<ObjectNumber
-								number="{
-									parts: ['NetAmount', 'Currency'],
-									formatter: '.formatter.formatCurrency'
-								}"/>
-							
-							<Label text="{i18n>tableCurrency}"/>
-							<Text text="{Currency}"/>
-							
-							<Label text="{i18n>tableDeliveryDate}"/>
-							<Text text="{
-								path: 'DeliveryDate',
-								formatter: '.formatter.formatDeliveryDate'
-							}"/>
-							
-							<Label text="{i18n>tableCreatedBy}"/>
-							<Text text="{CreatedBy}"/>
-							
-							<Label text="{i18n>tableCreatedOn}"/>
-							<Text text="{
-								path: 'CreatedOn',
-								formatter: '.formatter.formatDeliveryDate'
-							}"/>
-						</form:content>
-					</form:SimpleForm>
-				</VBox>
-				
-				<!-- Vendor Information -->
-				<VBox class="detailSection">
-					<Title text="{i18n>detailVendorInfo}" level="H3" class="detailSectionTitle"/>
-					<form:SimpleForm
-						editable="false"
-						layout="ResponsiveGridLayout"
-						labelSpanXL="4"
-						labelSpanL="4"
-						labelSpanM="4"
-						labelSpanS="12"
-						emptySpanXL="0"
-						emptySpanL="0"
-						emptySpanM="0"
-						emptySpanS="0"
-						columnsXL="2"
-						columnsL="2"
-						columnsM="1">
-						<form:content>
-							<Label text="{i18n>tableVendorName}"/>
-							<Text text="{VendorName}"/>
-							
-							<Label text="Vendor Code"/>
-							<Text text="{VendorCode}"/>
-							
-							<Label text="Contact Person"/>
-							<Text text="{ContactPerson}"/>
-							
-							<Label text="Phone"/>
-							<Text text="{Phone}"/>
-						</form:content>
-					</form:SimpleForm>
-				</VBox>
-				
-			</VBox>
-		</content>
-		
-		<footer>
-			<Toolbar>
-				<ToolbarSpacer/>
-				<Button
-					text="{i18n>detailBackButton}"
-					press="onNavBack"/>
-			</Toolbar>
-		</footer>
-	</Page>
+		<uxap:headerTitle>
+			<uxap:ObjectPageDynamicHeaderTitle>
+				<uxap:expandedHeading>
+					<Title text="Purchase Order {PONumber}" wrapping="true" class="sapUiSmallMarginEnd"/>
+				</uxap:expandedHeading>
+				<uxap:snappedHeading>
+					<FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+							<Title text="PO {PONumber}" wrapping="true" class="sapUiTinyMarginEnd"/>
+						</FlexBox>
+					</FlexBox>
+				</uxap:snappedHeading>
+				<uxap:expandedContent>
+					<Text text="{VendorName}"/>
+				</uxap:expandedContent>
+				<uxap:actions>
+					<Button text="{i18n>detailBackButton}" press="onNavBack" type="Emphasized"/>
+				</uxap:actions>
+			</uxap:ObjectPageDynamicHeaderTitle>
+		</uxap:headerTitle>
+
+		<uxap:headerContent>
+			<FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+				<layout:VerticalLayout class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<ObjectStatus title="{i18n>tableStatus}" text="{path: 'Status', formatter: '.formatter.formatStatus'}" state="{path: 'Status', formatter: '.formatter.formatStatusState'}"/>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<Title text="Total Amount" level="H4"/>
+					<ObjectNumber number="{parts: ['NetAmount', 'Currency'], formatter: '.formatter.formatCurrency'}"/>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+					<Title text="Delivery Date" level="H4"/>
+					<Text text="{path: 'DeliveryDate', formatter: '.formatter.formatDeliveryDate'}"/>
+				</layout:VerticalLayout>
+			</FlexBox>
+		</uxap:headerContent>
+
+		<uxap:sections>
+			<uxap:ObjectPageSection titleUppercase="false" title="General Information">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="Details">
+						<uxap:blocks>
+							<form:SimpleForm
+								editable="false"
+								layout="ResponsiveGridLayout"
+								labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+								columnsXL="2" columnsL="2" columnsM="1">
+								<form:content>
+									<core:Title xmlns:core="sap.ui.core" text="Order Info" />
+									<Label text="{i18n>tableCompanyCode}"/>
+									<Text text="{CompanyCode}"/>
+									<Label text="{i18n>tableCreatedBy}"/>
+									<Text text="{CreatedBy}"/>
+									<Label text="{i18n>tableCreatedOn}"/>
+									<Text text="{path: 'CreatedOn', formatter: '.formatter.formatDeliveryDate'}"/>
+									
+									<core:Title xmlns:core="sap.ui.core" text="Vendor Details" />
+									<Label text="{i18n>tableVendorName}"/>
+									<Text text="{VendorName}"/>
+									<Label text="Vendor Code"/>
+									<Text text="{VendorCode}"/>
+									<Label text="Contact Person"/>
+									<Text text="{ContactPerson}"/>
+									<Label text="Phone"/>
+									<Text text="{Phone}"/>
+								</form:content>
+							</form:SimpleForm>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+
+			<uxap:ObjectPageSection titleUppercase="false" title="Line Items">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="Items">
+						<uxap:blocks>
+							<Table id="lineItemsTable" items="{_Items}">
+								<columns>
+									<Column><Text text="Item Number"/></Column>
+									<Column><Text text="Material"/></Column>
+									<Column><Text text="Quantity"/></Column>
+									<Column><Text text="Unit Price"/></Column>
+									<Column hAlign="End"><Text text="Total Price"/></Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{ItemNumber}"/>
+											<Text text="{MaterialDescription}"/>
+											<Text text="{Quantity} {Unit}"/>
+											<Text text="{UnitPrice} {Currency}"/>
+											<ObjectNumber number="{parts: ['TotalPrice', 'Currency'], formatter: '.formatter.formatCurrency'}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+
+		</uxap:sections>
+	</uxap:ObjectPageLayout>
 </mvc:View>
