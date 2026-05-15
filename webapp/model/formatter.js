@@ -73,7 +73,14 @@ sap.ui.define([], function () {
 		 * @returns {string} Highlight state
 		 */
 		formatOverdueHighlight: function (dDate) {
-			return this.isOverdue(dDate) ? "Error" : "None";
+			if (!dDate) {
+				return "None";
+			}
+			var today = new Date();
+			today.setHours(0, 0, 0, 0);
+			var deliveryDate = new Date(dDate);
+			deliveryDate.setHours(0, 0, 0, 0);
+			return deliveryDate < today ? "Error" : "None";
 		},
 
 		/**
