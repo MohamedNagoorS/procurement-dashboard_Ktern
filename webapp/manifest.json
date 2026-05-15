@@ -11,7 +11,7 @@
     "description": "{{appDescription}}",
     "dataSources": {
       "mainService": {
-        "uri": "https://172.17.19.24:44300/sap/opu/odata/sap/ZSRV_PO_KTERN_O2/?sap-client=100",
+        "uri": "/sap/opu/odata/sap/ZSRV_PO_KTERN_O2/",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",

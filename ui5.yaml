@@ -18,8 +18,8 @@ server:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertError: false
+        ignoreCertError: true
         backend:
           - path: /sap
-            url: "https://pf-bp-1439-69f2e089d961d88a7f541a18.devzonecg.ktern.com"
-        
+            url: "https://172.17.19.24:44300"
+            client: "100"
