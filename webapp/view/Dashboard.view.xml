@@ -280,6 +280,16 @@
 									placeholder="{i18n>searchPlaceholder}"
 									search="onSearch"/>
 								<ToolbarSpacer/>
+								<Text 
+									text="Filter: {view>/selectedFilter}"
+									visible="{= ${view>/selectedFilter} !== 'All'}"
+									class="sapUiSmallMarginEnd"/>
+								<Button
+									icon="sap-icon://decline"
+									text="Clear Filter"
+									visible="{= ${view>/selectedFilter} !== 'All'}"
+									press="onClearFilter"
+									type="Emphasized"/>
 								<Button
 									icon="sap-icon://filter"
 									text="{i18n>filterButton}"

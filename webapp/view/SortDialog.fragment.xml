@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="onSortDialogConfirm"
+		title="Sort">
+		<sortItems>
+			<ViewSettingsItem
+				text="PO Number"
+				key="PONumber"
+				selected="true"/>
+			<ViewSettingsItem
+				text="Vendor Name"
+				key="VendorName"/>
+			<ViewSettingsItem
+				text="Company Code"
+				key="CompanyCode"/>
+			<ViewSettingsItem
+				text="Net Amount"
+				key="NetAmount"/>
+			<ViewSettingsItem
+				text="Delivery Date"
+				key="DeliveryDate"/>
+			<ViewSettingsItem
+				text="Status"
+				key="Status"/>
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

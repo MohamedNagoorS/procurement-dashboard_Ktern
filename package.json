@@ -4,7 +4,7 @@
   "description": "SAP Fiori Procurement Dashboard Application",
   "private": true,
   "scripts": {
-    "start": "ui5 serve --port 8085 --open index.html",
+    "start": "ui5 serve --port 8082 --open index.html",
     "start:8080": "ui5 serve --port 8080 --open index.html",
     "start:3000": "ui5 serve --port 3000 --open index.html",
     "build": "ui5 build --clean-dest --dest dist",

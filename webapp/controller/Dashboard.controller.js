@@ -199,8 +199,10 @@ sap.ui.define([
 					sFilter = oCustomData;
 				}
 			}
+			
+			var oViewModel = this.getView().getModel("view");
 			var oTable = this.byId("poTable");
-			var oBinding = oTable.getBinding("items");
+			var oBinding = oTable.getBinding("rows");
 			var aFilters = [];
 
 			if (sFilter !== "All") {
@@ -217,6 +219,9 @@ sap.ui.define([
 
 			oBinding.filter(aFilters);
 			
+			// Store selected filter in view model
+			oViewModel.setProperty("/selectedFilter", sFilter);
+			
 			// Scroll to table
 			var oPage = this.byId("dashboardPage");
 			oPage.scrollToElement(this.byId("poTable"));
@@ -231,7 +236,7 @@ sap.ui.define([
 		onSearch: function (oEvent) {
 			var sQuery = oEvent.getParameter("query") || oEvent.getParameter("newValue");
 			var oTable = this.byId("poTable");
-			var oBinding = oTable.getBinding("items");
+			var oBinding = oTable.getBinding("rows");
 			var aFilters = [];
 
 			if (sQuery && sQuery.length > 0) {
@@ -250,6 +255,29 @@ sap.ui.define([
 		},
 
 		/**
+		 * Clear all filters from the table
+		 */
+		onClearFilter: function () {
+			var oViewModel = this.getView().getModel("view");
+			var oTable = this.byId("poTable");
+			var oBinding = oTable.getBinding("rows");
+			
+			// Clear filters
+			oBinding.filter([]);
+			
+			// Reset selected filter
+			oViewModel.setProperty("/selectedFilter", "All");
+			
+			// Clear search field
+			var oSearchField = this.byId("searchField");
+			if (oSearchField) {
+				oSearchField.setValue("");
+			}
+			
+			MessageToast.show("Filters cleared");
+		},
+
+		/**
 		 * Open filter dialog
 		 */
 		onOpenFilterDialog: function () {
@@ -261,8 +289,30 @@ sap.ui.define([
 		 * Open sort dialog
 		 */
 		onOpenSortDialog: function () {
-			MessageToast.show("Sort dialog - To be implemented with sort options");
-			// TODO: Implement sort dialog
+			if (!this._oSortDialog) {
+				this._oSortDialog = sap.ui.xmlfragment("procurement.dashboard.view.SortDialog", this);
+				this.getView().addDependent(this._oSortDialog);
+			}
+			this._oSortDialog.open();
+		},
+
+		/**
+		 * Handle sort dialog confirm
+		 * @param {sap.ui.base.Event} oEvent - Confirm event
+		 */
+		onSortDialogConfirm: function (oEvent) {
+			var mParams = oEvent.getParameters();
+			var sSortPath = mParams.sortItem.getKey();
+			var bDescending = mParams.sortDescending;
+
+			var oTable = this.byId("poTable");
+			var oBinding = oTable.getBinding("rows");
+			var oSorter = new Sorter(sSortPath, bDescending);
+
+			oBinding.sort(oSorter);
+			
+			var sSortOrder = bDescending ? "descending" : "ascending";
+			MessageToast.show("Sorted by " + mParams.sortItem.getText() + " (" + sSortOrder + ")");
 		},
 
 		/**
